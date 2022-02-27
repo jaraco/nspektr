@@ -7,7 +7,7 @@ Welcome to |project| documentation!
    history
 
 
-.. automodule:: skeleton
+.. automodule:: nspektr
     :members:
     :undoc-members:
     :show-inheritance:
