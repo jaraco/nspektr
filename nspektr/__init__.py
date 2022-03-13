@@ -61,16 +61,20 @@ def find_direct_dependencies(dist, extras=None):
     return itertools.chain(simple, extra_deps)
 
 
-def traverse(items, visit):
+def traverse(items):
+    """
+    Given an iterable of items, traverse the items.
+
+    For each item yielded, the consumer may send back additional
+    items to include in the traversal.
+    """
     while True:
         try:
             item = next(items)
         except StopIteration:
             return
-        child = yield item
-        if not child:
-            continue
-        items = itertools.chain(items, visit(child))
+        additional = yield item
+        items = itertools.chain(items, additional or ())
 
 
 def find_req_dependencies(req):
@@ -95,8 +99,7 @@ def find_dependencies(dist, extras=None):
     >>> any('pytest' in str(dep) for dep in test_deps)
     True
     """
-    initial = find_direct_dependencies(dist, extras)
-    traversal = traverse(initial, find_req_dependencies)
+    traversal = traverse(find_direct_dependencies(dist, extras))
     with contextlib.suppress(StopIteration):
         req = next(traversal)
         seen = set()
@@ -106,7 +109,7 @@ def find_dependencies(dist, extras=None):
                 continue
             seen.add(str(req))
             yield req
-            req = traversal.send(req)
+            req = traversal.send(find_req_dependencies(req))
 
 
 def check(ep):
