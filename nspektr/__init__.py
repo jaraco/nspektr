@@ -113,6 +113,18 @@ def find_dependencies(dist, extras=None):
     return traverse(find_direct_dependencies(dist, extras), visit)
 
 
+class Unresolved(Exception):
+    def __iter__(self):
+        return iter(self.args[0])
+
+
+def missing(ep):
+    """
+    Generate the unresolved dependencies (if any) of ep.
+    """
+    return unsatisfied(find_dependencies(ep.dist, repair_extras(ep.extras)))
+
+
 def check(ep):
     """
     >>> ep, = metadata.entry_points(group='console_scripts', name='pip')
@@ -126,8 +138,8 @@ def check(ep):
     >>> check(ep)
     Traceback (most recent call last):
     ...
-    ValueError: ('Unable to resolve all dependencies',...
+    nspektr.Unresolved: [...]
     """
-    missing = list(unsatisfied(find_dependencies(ep.dist, repair_extras(ep.extras))))
-    if missing:
-        raise ValueError("Unable to resolve all dependencies", missing)
+    missed = list(missing(ep))
+    if missed:
+        raise Unresolved(missed)

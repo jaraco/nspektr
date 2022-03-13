@@ -1,3 +1,12 @@
+v0.3.0
+======
+
+``check()`` now raises an ``Unresolved`` exception, an iterable
+indicating the unresolved dependencies.
+
+Added ``missing()`` method to generate missing dependencies for
+an EntryPoint.
+
 v0.2.0
 ======
 
