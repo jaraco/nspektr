@@ -8,7 +8,7 @@ from more_itertools import always_iterable
 from jaraco.context import suppress
 from jaraco.functools import apply
 
-from ._compat import metadata
+from ._compat import metadata, repair_extras
 
 
 def resolve(req: Requirement):
@@ -16,12 +16,12 @@ def resolve(req: Requirement):
     >>> resolve(Requirement('pytest<3'))
     Traceback (most recent call last):
     ...
-    importlib_metadata.PackageNotFoundError: No package metadata was found for pytest<3
+    importlib.metadata.PackageNotFoundError: No package metadata was found for pytest<3
     """
     dist = metadata.distribution(req.name)
     if not req.specifier.contains(Version(dist.version), prereleases=True):
         raise metadata.PackageNotFoundError(str(req))
-    dist.extras = req.extras  # type: ignore
+    dist.extras = repair_extras(req.extras)  # type: ignore
     return dist
 
 
@@ -124,6 +124,6 @@ def check(ep):
     ...
     ValueError: ('Unable to resolve all dependencies',...
     """
-    missing = list(unsatisfied(find_dependencies(ep.dist, ep.extras)))
+    missing = list(unsatisfied(find_dependencies(ep.dist, repair_extras(ep.extras))))
     if missing:
         raise ValueError("Unable to resolve all dependencies", missing)

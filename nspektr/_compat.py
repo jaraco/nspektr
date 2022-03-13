@@ -1,5 +1,20 @@
-if False:
-    # bugfix from 4.11.2 is required
+import contextlib
+
+
+try:
     import importlib.metadata as metadata
-else:
+except ImportError:
     import importlib_metadata as metadata  # type: ignore # noqa: F401
+
+
+def repair_extras(extras):
+    """
+    Repair extras that appear as match objects.
+
+    python/importlib_metadata#369 revealed a flaw in the EntryPoint
+    implementation. This function wraps the extras to ensure
+    they are proper strings even on older implementations.
+    """
+    with contextlib.suppress(AttributeError):
+        return list(item.group(0) for item in extras)
+    return extras
