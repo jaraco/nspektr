@@ -1,3 +1,9 @@
+v0.2.0
+======
+
+Added backward compatibility for EntryPoint objects as found in
+older importlib metadata implementations.
+
 v0.1.0
 ======
 
