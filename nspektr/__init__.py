@@ -15,7 +15,7 @@ def resolve(req: Requirement) -> metadata.Distribution:
     """
     Resolve the requirement to its distribution.
 
-    Ignore exception detail for Python 3.7 compatibility.
+    Ignore exception detail for Python 3.9 compatibility.
 
     >>> resolve(Requirement('pytest<3'))  # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):

@@ -1,9 +1,10 @@
 import contextlib
+import sys
 
 
-try:
+if sys.version_info >= (3, 10):
     import importlib.metadata as metadata
-except ImportError:
+else:
     import importlib_metadata as metadata  # type: ignore # noqa: F401
 
 
