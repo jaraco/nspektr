@@ -25,7 +25,7 @@ def resolve(req: Requirement) -> metadata.Distribution:
     dist = metadata.distribution(req.name)
     if not req.specifier.contains(Version(dist.version), prereleases=True):
         raise metadata.PackageNotFoundError(str(req))
-    dist.extras = repair_extras(req.extras)  # type: ignore
+    dist.extras = req.extras  # type: ignore
     return dist
 
 
