@@ -11,9 +11,13 @@ from jaraco.functools import apply
 from ._compat import metadata, repair_extras
 
 
-def resolve(req: Requirement):
+def resolve(req: Requirement) -> metadata.Distribution:
     """
-    >>> resolve(Requirement('pytest<3'))
+    Resolve the requirement to its distribution.
+
+    Ignore exception detail for Python 3.7 compatibility.
+
+    >>> resolve(Requirement('pytest<3'))  # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
     ...
     importlib.metadata.PackageNotFoundError: No package metadata was found for pytest<3
