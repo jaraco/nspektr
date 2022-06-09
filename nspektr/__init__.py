@@ -127,7 +127,7 @@ def missing(ep):
 
 def check(ep):
     """
-    >>> ep, = metadata.entry_points(group='console_scripts', name='pip')
+    >>> ep, = metadata.entry_points(group='console_scripts', name='pytest')
     >>> check(ep)
     >>> dist = metadata.distribution('nspektr')
 
