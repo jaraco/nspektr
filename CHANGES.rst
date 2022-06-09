@@ -1,3 +1,9 @@
+v0.4.0
+======
+
+#1: doctest on ``check()`` uses ``pytest`` instead of ``pip`` for
+broader compatibility.
+
 v0.3.0
 ======
 
