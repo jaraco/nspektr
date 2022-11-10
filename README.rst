@@ -1,10 +1,7 @@
 .. image:: https://img.shields.io/pypi/v/nspektr.svg
-   :target: `PyPI link`_
+   :target: https://pypi.org/project/nspektr
 
 .. image:: https://img.shields.io/pypi/pyversions/nspektr.svg
-   :target: `PyPI link`_
-
-.. _PyPI link: https://pypi.org/project/nspektr
 
 .. image:: https://github.com/jaraco/nspektr/workflows/tests/badge.svg
    :target: https://github.com/jaraco/nspektr/actions?query=workflow%3A%22tests%22
