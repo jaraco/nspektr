@@ -30,6 +30,7 @@ link_files = {
 
 # Be strict about any broken references
 nitpicky = True
+nitpick_ignore = []
 
 # Include Python intersphinx mapping to prevent failures
 # jaraco/skeleton#51
@@ -40,3 +41,9 @@ intersphinx_mapping = {
 
 # Preserve authored syntax for defaults
 autodoc_preserve_defaults = True
+
+intersphinx_mapping.update(
+    packaging=('https://packaging.pypa.io/en/stable/', None),
+)
+
+nitpick_ignore.append(('py:class', 'importlib.metadata.Distribution'))
