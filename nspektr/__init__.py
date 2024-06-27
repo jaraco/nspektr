@@ -99,7 +99,7 @@ def find_dependencies(dist, extras=None):
     True
     >>> not any('pytest' in str(dep) for dep in deps)
     True
-    >>> test_deps = find_dependencies(resolve(Requirement('nspektr[testing]')))
+    >>> test_deps = find_dependencies(resolve(Requirement('nspektr[test]')))
     >>> any('pytest' in str(dep) for dep in test_deps)
     True
     """
@@ -134,7 +134,7 @@ def check(ep):
     Since 'docs' extras are not installed, requesting them should fail.
 
     >>> ep = metadata.EntryPoint(
-    ...     group=None, name=None, value='nspektr [docs]')._for(dist)
+    ...     group=None, name=None, value='nspektr [doc]')._for(dist)
     >>> check(ep)
     Traceback (most recent call last):
     ...
