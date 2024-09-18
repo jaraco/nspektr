@@ -60,5 +60,14 @@ intersphinx_mapping.update(
 )
 
 nitpick_ignore += [
+    # jaraco/nspektr#3
+    ('py:class', 'Requirement'),
+    ('py:class', 'Marker'),
+    ('py:class', 'importlib.metadata.EntryPoint'),
+    ('py:class', 'itertools.chain'),
+    ('py:class', 'metadata.EntryPoint'),
+    ('py:class', 'itertools.filterfalse'),
+    ('py:class', 'Requirement'),
+    ('py:class', 'nspektr._T'),
     ('py:class', 'importlib.metadata.Distribution'),
 ]
