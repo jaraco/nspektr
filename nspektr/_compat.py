@@ -1,11 +1,4 @@
 import contextlib
-import sys
-
-
-if sys.version_info >= (3, 10):
-    import importlib.metadata as metadata
-else:
-    import importlib_metadata as metadata  # type: ignore # noqa: F401
 
 
 def repair_extras(extras):

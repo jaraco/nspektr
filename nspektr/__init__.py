@@ -1,6 +1,7 @@
 import itertools
 import functools
 import contextlib
+from importlib import metadata
 
 from packaging.requirements import Requirement
 from packaging.version import Version
@@ -8,7 +9,7 @@ from more_itertools import always_iterable
 from jaraco.context import suppress
 from jaraco.functools import apply
 
-from ._compat import metadata, repair_extras
+from ._compat import repair_extras
 
 
 def resolve(req: Requirement) -> metadata.Distribution:

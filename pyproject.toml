@@ -27,7 +27,6 @@ dependencies = [
 	"jaraco.functools",
 	"more_itertools",
 	"packaging",
-	'importlib_metadata>=3.6; python_version < "3.10"',
 ]
 dynamic = ["version"]
 
