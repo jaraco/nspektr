@@ -1,13 +1,13 @@
-import itertools
-import functools
 import contextlib
+import functools
+import itertools
 from importlib import metadata
 
-from packaging.requirements import Requirement
-from packaging.version import Version
-from more_itertools import always_iterable
 from jaraco.context import suppress
 from jaraco.functools import apply
+from more_itertools import always_iterable
+from packaging.requirements import Requirement
+from packaging.version import Version
 
 from ._compat import repair_extras
 
@@ -105,7 +105,9 @@ def find_dependencies(dist, extras=None):
     True
     """
 
-    def visit(req, seen=set()):
+    seen = set()
+
+    def visit(req):
         if req in seen:
             return ()
         seen.add(req)

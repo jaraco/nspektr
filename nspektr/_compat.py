@@ -10,5 +10,5 @@ def repair_extras(extras):
     they are proper strings even on older implementations.
     """
     with contextlib.suppress(AttributeError):
-        return list(item.group(0) for item in extras)
+        return [item.group(0) for item in extras]
     return extras
